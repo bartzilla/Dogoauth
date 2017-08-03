@@ -63,7 +63,12 @@
             <scope>test</scope>
         </dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>
