@@ -15,13 +15,19 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception
     {
-        http.antMatcher("/**").authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/tenants").access("#oauth2.hasScope('write') or #oauth2.hasScope('trusted')")
-                .antMatchers("/**").access("#oauth2.hasScope('read') or #oauth2.hasScope('write') or #oauth2.hasScope('trusted')")
-
+        http.authorizeRequests()
+//                .antMatchers(HttpMethod.POST,"/tenants").access("#oauth2.hasScope('write') or #oauth2.hasScope('trusted')")
+                .antMatchers("/microsoft/**").access("#oauth2.hasScope('microsoft')")
+                .antMatchers("/google/**").access("#oauth2.hasScope('google')")
                 .and()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        resources.resourceId("dashbaord");
     }
 
 }

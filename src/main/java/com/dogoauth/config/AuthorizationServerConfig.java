@@ -28,6 +28,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception
     {
         clients.jdbc(dataSourceProduction);
+
+//        clients.inMemory().withClient("microsoft")
+//                .authorizedGrantTypes("client_credentials")
+//                .authorities("TRUSTED")
+//                .scopes("microsoft")
+//                .secret("trustedsecret")
+//                .and().withClient("google").authorizedGrantTypes("client_credentials").authorities("TRUSTED").scopes("google").secret("trustedsecret");
+
     }
 
 }

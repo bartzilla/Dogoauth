@@ -39,11 +39,16 @@ public class DatabaseLoader implements ApplicationRunner
     {
         ClientRegistrationService tenants = new JdbcClientDetailsService(dataSourceProduction);
 
-        BaseClientDetails clientDetails = new BaseClientDetails("microsoft", "orange-cannon",
-                "trusted", "client_credentials", "TRUSTED");
+        BaseClientDetails clientDetails = new BaseClientDetails("microsoft", null,
+                "microsoft", "client_credentials", "TRUSTED");
+
+        BaseClientDetails clientDetails2 = new BaseClientDetails("google", null,
+                "google", "client_credentials", "TRUSTED");
 
         clientDetails.setClientSecret("trustedsecret");
+        clientDetails2.setClientSecret("trustedsecret");
 
         tenants.addClientDetails(clientDetails);
+        tenants.addClientDetails(clientDetails2);
     }
 }
